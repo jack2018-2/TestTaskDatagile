@@ -25,6 +25,7 @@ namespace TestTaskDatagile.Services.Implementation
 
         public DogeAPIResponse<IDictionary<string, IEnumerable<string>>> Load()
         {
+            _logger.LogInformation($"Запущен процесс получения списка пород");
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -34,6 +35,7 @@ namespace TestTaskDatagile.Services.Implementation
                     _apiResponse = JsonSerializer.Deserialize<DogeAPIResponse<IDictionary<string, IEnumerable<string>>>>(json);
                 }
                 //todo обработка status != succes?
+                _logger.LogInformation($"Список пород получен");
                 return _apiResponse;
             }
             catch (Exception e) when (e is HttpRequestException ||
@@ -44,7 +46,6 @@ namespace TestTaskDatagile.Services.Implementation
                                       e is NotSupportedException)
             {
                 var msg = "Не удалось выгрузить список пород";
-                _logger.LogError(msg, e);
                 throw new DogApiException(msg);
             }
         }

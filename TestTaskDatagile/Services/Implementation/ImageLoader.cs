@@ -33,7 +33,7 @@ namespace TestTaskDatagile.Services.Implementation
         public async Task Load(KeyValuePair<string, IEnumerable<string>> breed, int count)
         {
             var response = CallApi(breed, count);
-            _redisUploader.Upload(breed.Key, response);
+            await _redisUploader.Upload(breed.Key, response);
         }
 
         private DogeAPIResponse<IEnumerable<string>> CallApi(KeyValuePair<string, IEnumerable<string>> breed, int count)
@@ -62,7 +62,6 @@ namespace TestTaskDatagile.Services.Implementation
                                       e is NotSupportedException)
             {
                 var msg = $"Не удалось выгрузить фотографии породы {breed.Key}";
-                _logger.LogError(msg, e);
                 throw new DogApiException(msg);
             }
         }

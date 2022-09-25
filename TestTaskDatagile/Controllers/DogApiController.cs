@@ -11,13 +11,10 @@ namespace TestTaskDatagile.Controllers
     [Route("[controller]")]
     public class DogApiController : ControllerBase
     {
-
-        private readonly ILogger<DogApiController> _logger;
         private readonly IDogeRequestProcessor _requestProcessor;
 
-        public DogApiController(ILogger<DogApiController> logger, IDogeRequestProcessor requestProcessor)
+        public DogApiController(IDogeRequestProcessor requestProcessor)
         {
-            _logger = logger;
             _requestProcessor = requestProcessor;
         }
 

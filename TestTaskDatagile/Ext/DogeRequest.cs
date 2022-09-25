@@ -14,5 +14,10 @@
         /// Кол-во изображений для загрузки в каждой породе
         /// </summary>
         public int Count { get; set; }
+
+        /// <summary>
+        /// Имя породы, для которой нужно загрузить фотографии
+        /// </summary>
+        public string BreedName { get; set; }
     }
 }
